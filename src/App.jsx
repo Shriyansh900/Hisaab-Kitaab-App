@@ -14,6 +14,15 @@ const App = () => {
     // { id: 5, text: "Dividend", amount: 10000 },
   ]);
 
+  const [theme, setTheme] = useState(true , "LIght Theme");
+  // const [text, setText] = useState("Dark Theme");
+  // const [text] = useState("Dark Theme");
+
+  // const [themetext, setThemetext] = useState("Light Theme");
+
+  const themeChange = () => {
+    setTheme(theme ? false : true);
+  };
 
   const [edit, setEdit] = useState({ transaction: {}, isEdit: false });
   //Add Transaction
@@ -47,8 +56,14 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="container p-5">
+      <Navbar themeChange={themeChange} theme={theme} />
+      <div
+        className={
+          theme
+            ? "container-fluid p-5 bg-light min-height"
+            : "container-fluid p-5 bg-secondary min-height"
+        }
+      >
         <Form
           addTransaction={addTransaction}
           updateTransaction={updateTransaction}
